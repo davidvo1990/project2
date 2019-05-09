@@ -11,11 +11,11 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     }),
-    Gig.belongsTo(models.Venue, {
-        foreignKey: {
-          allowNull: false
-        }
-      });
+    // IGNORE THIS LINT ISSUE
+    Gig.belongsTo(models.Venue, { 
+      foreignKey: { 
+        allowNull: false 
+      } });
   };
 
   return Gig;

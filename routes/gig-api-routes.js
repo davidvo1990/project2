@@ -1,7 +1,3 @@
-// *********************************************************************************
-// api-routes.js - this file offers a set of routes for displaying and saving data to the db
-// *********************************************************************************
-
 // Dependencies
 // =============================================================
 
@@ -11,7 +7,6 @@ var db = require("../models");
 // Routes
 // =============================================================
 module.exports = function(app) {
-
   // GET route for getting all of the gigs
   app.get("/api/gigs", function(req, res) {
     var query = {};
@@ -23,13 +18,13 @@ module.exports = function(app) {
     // In this case, just db.Artist
     db.Gig.findAll({
       where: query,
-      include: [db.Artist]
+      include: [db.Artist, db.Venue]
     }).then(function(dbGig) {
       res.json(dbGig);
     });
   });
 
-  // Get route for retrieving a single Gig
+  // Get route for retrieving a single gig
   app.get("/api/gigs/:id", function(req, res) {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
@@ -38,13 +33,13 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       },
-      include: [db.Artist]
+      include: [db.Artist, db.Venue]
     }).then(function(dbGig) {
       res.json(dbGig);
     });
   });
 
-  // Post route for saving a new Gig
+  // POST route for saving a new gig
   app.post("/api/gigs", function(req, res) {
     db.Gig.create(req.body).then(function(dbGig) {
       res.json(dbGig);
@@ -64,13 +59,11 @@ module.exports = function(app) {
 
   // PUT route for updating gigs
   app.put("/api/gigs", function(req, res) {
-    db.Gig.update(
-      req.body,
-      {
-        where: {
-          id: req.body.id
-        }
-      }).then(function(dbGig) {
+    db.Gig.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbGig) {
       res.json(dbGig);
     });
   });

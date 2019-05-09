@@ -1,8 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>FLOE</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container floe">
+    <div class="row">
+      <div class="col-md-2 col-sm-2">
+        <a class="btn btn-light" href="/cms">New Gig</a>
+      </div>
+      <div class="col-md-2 col-sm-2">
+        <a class="btn btn-light" href="/artists">Manage Artists</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 gig-container">
+      </div>
+    </div>
+  </div>
+  <!-- Custom Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
+  <!-- <script src="js/floe.js" type="text/javascript"></script> -->
+
+<script>
+$(document).ready(function() {
+// var gigContainer = $(".gig-container");
 $(document).ready(function() {
   /* global moment */
 
-  // blogContainer holds all of our posts
-  var blogContainer = $(".blog-container");
+  // gigContainer holds all of our posts
+  var gigContainer = $(".gig-container");
   var postCategorySelect = $("#category");
   // Click events for the edit and delete buttons
   $(document).on("click", "button.delete", handlePostDelete);
@@ -10,31 +45,31 @@ $(document).ready(function() {
   // Variable to hold our posts
   var posts;
 
-  // The code below handles the case where we want to get blog posts for a specific author
-  // Looks for a query param in the url for author_id
+  // The code below handles the case where we want to get gig posts for a specific Artist
+  // Looks for a query param in the url for ArtistId
   var url = window.location.search;
-  var authorId;
-  if (url.indexOf("?author_id=") !== -1) {
-    authorId = url.split("=")[1];
-    getPosts(authorId);
+  var artistId;
+  if (url.indexOf("?ArtistId=") !== -1) {
+    artistId = url.split("=")[1];
+    getPosts(artistId);
   }
-  // If there's no authorId we just get all posts as usual
+  // If there's no artistId we just get all posts as usual
   else {
     getPosts();
   }
 
 
   // This function grabs posts from the database and updates the view
-  function getPosts(author) {
-    authorId = author || "";
-    if (authorId) {
-      authorId = "/?author_id=" + authorId;
+  function getPosts(artist) {
+    artistId = artist || "";
+    if (artistId) {
+      artistId = "/?ArtistId=" + artistId;
     }
-    $.get("/api/posts" + authorId, function(data) {
+    $.get("/api/gigs" + artistId, function(data) {
       console.log("Posts", data);
       posts = data;
       if (!posts || !posts.length) {
-        displayEmpty(author);
+        displayEmpty(artist);
       }
       else {
         initializeRows();
@@ -46,21 +81,21 @@ $(document).ready(function() {
   function deletePost(id) {
     $.ajax({
       method: "DELETE",
-      url: "/api/posts/" + id
+      url: "/api/gigs/" + id
     })
       .then(function() {
         getPosts(postCategorySelect.val());
       });
   }
 
-  // InitializeRows handles appending all of our constructed post HTML inside blogContainer
+  // InitializeRows handles appending all of our constructed post HTML inside gigContainer
   function initializeRows() {
-    blogContainer.empty();
+    gigContainer.empty();
     var postsToAdd = [];
     for (var i = 0; i < posts.length; i++) {
       postsToAdd.push(createNewRow(posts[i]));
     }
-    blogContainer.append(postsToAdd);
+    gigContainer.append(postsToAdd);
   }
 
   // This function constructs a post's HTML
@@ -79,9 +114,9 @@ $(document).ready(function() {
     editBtn.addClass("edit btn btn-info");
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
-    var newPostAuthor = $("<h5>");
-    newPostAuthor.text("Written by: " + post.Author.name);
-    newPostAuthor.css({
+    var newPostArtist = $("<h5>");
+    newPostArtist.text("Written by: " + post.Artist.name);
+    newPostArtist.css({
       float: "right",
       color: "blue",
       "margin-top":
@@ -90,14 +125,14 @@ $(document).ready(function() {
     var newPostCardBody = $("<div>");
     newPostCardBody.addClass("card-body");
     var newPostBody = $("<p>");
-    newPostTitle.text(post.title + " ");
+    newPostTitle.text(post.name + " ");
     newPostBody.text(post.body);
     newPostDate.text(formattedDate);
     newPostTitle.append(newPostDate);
     newPostCardHeading.append(deleteBtn);
     newPostCardHeading.append(editBtn);
     newPostCardHeading.append(newPostTitle);
-    newPostCardHeading.append(newPostAuthor);
+    newPostCardHeading.append(newPostArtist);
     newPostCardBody.append(newPostBody);
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
@@ -128,14 +163,21 @@ $(document).ready(function() {
     var query = window.location.search;
     var partial = "";
     if (id) {
-      partial = " for Author #" + id;
+      partial = " for Artist #" + id;
     }
-    blogContainer.empty();
+    gigContainer.empty();
     var messageH2 = $("<h2>");
     messageH2.css({ "text-align": "center", "margin-top": "50px" });
     messageH2.html("No posts yet" + partial + ", navigate <a href='/cms" + query +
     "'>here</a> in order to get started.");
-    blogContainer.append(messageH2);
+    gigContainer.append(messageH2);
   }
 
 });
+
+
+});
+</script>
+</body>
+
+</html>
