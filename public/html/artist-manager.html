@@ -20,6 +20,9 @@
             <div class="col-md-2 col-sm-2">
                 <a class="btn btn-light" href="/cms">New Gig</a>
             </div>
+            <div class="col-md-2 col-sm-2">
+                <a class="btn btn-light" href="/venues">Venue Manager</a>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-8 offset-md-2">
@@ -32,6 +35,7 @@
                                 <th>Phone Number</th>
                                 <th>Email</th>
                                 <th>Genre</th>
+                                <th>Social Media</th>
                                 <th># of Gigs</th>
                                 <th>See Artist's Gigs</th>
                                 <th>New Gig</th>
@@ -70,6 +74,10 @@
                                     <input placeholder="Enter Genre" id="artist-genre" class="form-control" type="text"
                                         required />
                                     <br />
+                                    <label for="artist-socialMedia">Social Media:</label>
+                                    <input placeholder="Enter Social Media" id="artist-socialMedia" class="form-control"
+                                        type="text" required />
+                                    <br />
                                     <button type="submit" class="btn btn-success">Create Artist</button>
                                 </form>
                             </tr>
@@ -90,6 +98,7 @@
                 var phoneInput = $("#artist-phone");
                 var emailInput = $("#artist-email");
                 var genreInput = $("#artist-genre");
+                var socialMediaInput = $("#artist-socialMedia");
                 var artistList = $("tbody");
                 var artistContainer = $(".artist-container");
                 // Adding event listeners to the form to create a new object, and the button to delete
@@ -107,9 +116,11 @@
                     if (!nameInput.val().trim().trim() ||
                         !phoneInput.val().trim().trim() ||
                         !emailInput.val().trim().trim() ||
-                        !genreInput.val().trim().trim()
+                        !genreInput.val().trim().trim() ||
+                        !socialMediaInput.val().trim().trim()
                     ) {
-                        return;
+                        // return;
+                        throw new Error("Please input information!!!")
                     }
 
                     // Calling the upsertArtist function and passing in the value of the name input
@@ -124,6 +135,9 @@
                             .val()
                             .trim(),
                         genre: genreInput
+                            .val()
+                            .trim(),
+                        socialMedia: socialMediaInput
                             .val()
                             .trim(),
                     });
@@ -143,6 +157,7 @@
                     newTr.append("<td>" + artistData.phone + "</td>");
                     newTr.append("<td>" + artistData.email + "</td>");
                     newTr.append("<td>" + artistData.genre + "</td>");
+                    newTr.append("<td>" + artistData.socialMedia + "</td>");
                     if (artistData.Gigs) {
                         newTr.append("<td> " + artistData.Gigs.length + "</td>");
                     } else {
@@ -166,6 +181,7 @@
                         phoneInput.val("");
                         emailInput.val("");
                         genreInput.val("");
+                        socialMediaInput.val("");
                     });
                 }
 

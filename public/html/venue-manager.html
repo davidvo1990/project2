@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CMS - Express</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-2 col-sm-2">
+                <a class="btn btn-light" href="/floe">Home</a>
+            </div>
+            <div class="col-md-2 col-sm-2">
+                <a class="btn btn-light" href="/cms">New Gig</a>
+            </div>
+            <div class="col-md-2 col-sm-2">
+                <a class="btn btn-light" href="/artists">Artist Manager</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="venue-container">
+                    <h1>Venue</h1>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Contact</th>
+                                <th>Phone Number</th>
+                                <th>Website</th>
+                                <th># of Gigs</th>
+                                <th>See Venue's Gigs</th>
+                                <th>New Gig</th>
+                                <th>Delete Venue</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr id="form-row">
+                                <form id="venue-form">
+                                    <label for="venue-name">Name:</label>
+                                    <input placeholder="Enter Name" id="venue-name" class="form-control" type="text"
+                                        required />
+                                    <br />
+                                    <label for="venue-address">Address:</label>
+                                    <input placeholder="Enter Address" id="venue-address" class="form-control" type="text"
+                                        required />
+                                    <br />
+                                    <label for="venue-contact">Contact:</label>
+                                    <input placeholder="Enter Contact" id="venue-contact" class="form-control" type="text"
+                                        required />
+                                    <br />
+                                    <label for="venue-phone">Phone:</label>
+                                    <input placeholder="Enter Phone" id="venue-phone" class="form-control" type="text"
+                                        required />
+                                    <br />
+                                    <label for="venue-website">Website:</label>
+                                    <input placeholder="Enter Website" id="venue-website" class="form-control"
+                                        type="text" required />
+                                    <br />
+                                    <button type="submit" class="btn btn-success">Create Venue</button>
+                                </form>
+                            </tr>
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        </d>
+        <!-- Custom Script -->
+        <script src="js/venue-manager.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function () {
+                // Getting references to the name input and venue container, as well as the table body
+                var nameInput = $("#venue-name");
+                var addressInput = $("#venue-address");
+                var contactInput = $("#venue-contact");
+                var phoneInput = $("#venue-phone");
+                var websiteInput = $("#venue-website");
+                var venueList = $("tbody");
+                var venueContainer = $(".venue-container");
+                // Adding event listeners to the form to create a new object, and the button to delete
+                // an venue
+                $(document).on("submit", "#venue-form", handleVenueFormSubmit);
+                $(document).on("click", ".delete-venue", handleDeleteButtonPress);
+
+                // Getting the initial list of Venues
+                getVenues();
+
+                // A function to handle what happens when the form is submitted to create a new Venue
+                function handleVenueFormSubmit(event) {
+                    event.preventDefault();
+                    // Don't do anything if the name fields hasn't been filled out
+                    if (!nameInput.val().trim().trim() ||
+                        !addressInput.val().trim().trim() ||
+                        !contactInput.val().trim().trim() ||
+                        !phoneInput.val().trim().trim() ||
+                        !websiteInput.val().trim().trim()
+                    ) {
+                        // return;
+                        throw new Error("Please input information!!!")
+                    }
+
+                    // Calling the upsertVenue function and passing in the value of the name input
+                    upsertVenue({
+                        name: nameInput
+                            .val()
+                            .trim(),
+                        address: addressInput
+                            .val()
+                            .trim(),
+                        contact: contactInput
+                            .val()
+                            .trim(),
+                        phone: phoneInput
+                            .val()
+                            .trim(),
+                        website: websiteInput
+                            .val()
+                            .trim(),
+                    });
+                }
+
+                // A function for creating an venue. Calls getVenues upon completion
+                function upsertVenue(venueData) {
+                    $.post("/api/venues", venueData)
+                        .then(getVenues);
+                }
+
+                // Function for creating a new list row for venues
+                function createVenueRow(venueData) {
+                    var newTr = $("<tr>");
+                    newTr.data("venue", venueData);
+                    newTr.append("<td>" + venueData.name + "</td>");
+                    newTr.append("<td>" + venueData.address + "</td>");
+                    newTr.append("<td>" + venueData.contact + "</td>");
+                    newTr.append("<td>" + venueData.phone + "</td>");
+                    newTr.append("<td>" + venueData.website + "</td>");
+                    if (venueData.Gigs) {
+                        newTr.append("<td> " + venueData.Gigs.length + "</td>");
+                    } else {
+                        newTr.append("<td>0</td>");
+                    }
+                    newTr.append("<td><a href='/floe?VenueId=" + venueData.id + "'>Go to Gigs</a></td>");
+                    newTr.append("<td><a href='/cms?VenueId=" + venueData.id + "'>Create a Gig</a></td>");
+                    newTr.append("<td><a style='cursor:pointer;color:red' class='delete-venue'>Delete Venue</a></td>");
+                    return newTr;
+                }
+
+                // Function for retrieving venues and getting them ready to be rendered to the page
+                function getVenues() {
+                    $.get("/api/venues", function (data) {
+                        var rowsToAdd = [];
+                        for (var i = 0; i < data.length; i++) {
+                            rowsToAdd.push(createVenueRow(data[i]));
+                        }
+                        renderVenueList(rowsToAdd);
+                        nameInput.val("");
+                        addressInput.val("");
+                        contactInput.val("");
+                        phoneInput.val("");
+                        websiteInput.val("");
+                    });
+                }
+
+                // A function for rendering the list of venues to the page
+                function renderVenueList(rows) {
+                    venueList.children().not(":last").remove();
+                    venueContainer.children(".alert").remove();
+                    if (rows.length) {
+                        console.log(rows);
+                        venueList.prepend(rows);
+                    }
+                    else {
+                        renderEmpty();
+                    }
+                }
+
+                // Function for handling what to render when there are no venues
+                function renderEmpty() {
+                    var alertDiv = $("<div>");
+                    alertDiv.addClass("alert alert-danger");
+                    alertDiv.text("You must create an Venue before you can create a Post.");
+                    venueContainer.append(alertDiv);
+                }
+
+                // Function for handling what happens when the delete button is pressed
+                function handleDeleteButtonPress() {
+                    var listItemData = $(this).parent("td").parent("tr").data("venue");
+                    var id = listItemData.id;
+                    $.ajax({
+                        method: "DELETE",
+                        url: "/api/venues/" + id
+                    })
+                        .then(getVenues);
+                }
+            });
+
+        </script>
+
+</body>
+
+</html>
