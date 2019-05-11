@@ -39,21 +39,10 @@
                                 <th># of Gigs</th>
                                 <th>See Artist's Gigs</th>
                                 <th>New Gig</th>
+                                <th>Edit Artist</th>
                                 <th>Delete Artist</th>
                             </tr>
                         </thead>
-
-                        <!-- <tbody>
-                            <tr id="form-row">
-                                <form id="artist-form">
-                                    <td colspan="4">
-                                        <input placeholder="Enter a name" id="artist-name" type="text" />
-                                    </td>
-                                    <td><button type="submit" class="btn btn-success">Create Artist</button>
-                                    </td>
-                                </form>
-                            </tr>
-                        </tbody> -->
 
                         <tbody>
                             <tr id="form-row">
@@ -104,6 +93,7 @@
                 // Adding event listeners to the form to create a new object, and the button to delete
                 // an artist
                 $(document).on("submit", "#artist-form", handleArtistFormSubmit);
+                $(document).on("click", ".edit-artist", handleEditArtistButtonPress);
                 $(document).on("click", ".delete-artist", handleDeleteButtonPress);
 
                 // Getting the initial list of Artists
@@ -148,6 +138,7 @@
                     $.post("/api/artists", artistData)
                         .then(getArtists);
                 }
+                
 
                 // Function for creating a new list row for artists
                 function createArtistRow(artistData) {
@@ -165,6 +156,7 @@
                     }
                     newTr.append("<td><a href='/floe?ArtistId=" + artistData.id + "'>Go to Gigs</a></td>");
                     newTr.append("<td><a href='/cms?ArtistId=" + artistData.id + "'>Create a Gig</a></td>");
+                    newTr.append("<td><a style='cursor:pointer;color:blue' class='edit-artist'>Edit Artist</a></td>");
                     newTr.append("<td><a style='cursor:pointer;color:red' class='delete-artist'>Delete Artist</a></td>");
                     return newTr;
                 }
@@ -216,7 +208,84 @@
                     })
                         .then(getArtists);
                 }
+
+                function handleEditArtistButtonPress() {
+                    var currentPost = $(this)
+                        .parent()
+                        .parent()
+                        .data("artist");
+                    window.location.href = "/edit-artist?post_id=" + currentPost.id;
+                    
+                }
+
+
+
+
+
+
+
+
+
+/*
+
+
+                var url = window.location.search;
+                var postId;
+
+                // Function for handling waht happens when the edit button is pressed
+                function handleEditArtistButtonPress() {
+                    var currentPost = $(this)
+                        .parent()
+                        .parent()
+                        .data("artist");
+                    window.location.href = "/artists?post_id=" + currentPost.id;
+
+                }
+
+                if (url.indexOf("?post_id=") !== -1) {
+                    postId = url.split("=")[1];
+                    getPostData(postId, "artist");
+                }
+                // Otherwise if we have an ArtistId in our url, preset the artist select box to be our Artist
+                // else if (url.indexOf("?ArtistId=") !== -1) {
+                //     artistId = url.split("=")[1];
+                // }
+                // else if (url.indexOf("?VenueId=") !== -1) {
+                //     venueId = url.split("=")[1];
+                // }
+
+                // Gets post data for the current post if we're editing, or if we're adding to an artist's existing posts
+                function getPostData(id, type) {
+                    var queryUrl;
+                    switch (type) {
+                        case "artist":
+                            queryUrl = "/api/artists/" + id;
+                            break;
+                        // case "venue":
+                        //     queryUrl = "/api/venues/" + id;
+                        //     break;
+                        default:
+                            return;
+                    }
+                    $.get(queryUrl, function (data) {
+                        if (data) {
+                            // If this post exists, prefill our cms forms with its data
+                            console.log("Edit this " + data.name)
+                            nameInput.val(data.name);
+                            phoneInput.val(data.phone);
+                            emailInput.val(data.email);
+                            genreInput.val(data.genre);
+                            socialMediaInput.val(data.socialMedia);
+                            // If we have a post with this id, set a flag for us to know to update the post
+                            // when we hit submit
+                            updating = true;
+                        }
+                    });
+                }
+*/
             });
+
+
 
         </script>
 

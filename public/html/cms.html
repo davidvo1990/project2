@@ -76,9 +76,9 @@
 
             // If we have this section in our url, we pull out the post id from the url
             // In '?GigId=1', postId is 1
-            if (url.indexOf("?GigId=") !== -1) {
+            if (url.indexOf("?post_id=") !== -1) {
                 postId = url.split("=")[1];
-                getPostData(postId, "post");
+                getPostData(postId, "gig");
             }
             // Otherwise if we have an ArtistId in our url, preset the artist select box to be our Artist
             else if (url.indexOf("?ArtistId=") !== -1) {
@@ -137,7 +137,7 @@
             function getPostData(id, type) {
                 var queryUrl;
                 switch (type) {
-                    case "post":
+                    case "gig":
                         queryUrl = "/api/gigs/" + id;
                         break;
                     case "artist":
@@ -219,7 +219,7 @@
                 listOption.attr("value", venue.id);
                 listOption.text(venue.name);
                 return listOption;
-            }
+            };
 
             // Update a given post, bring user to the floe page when done
             function updatePost(post) {
@@ -231,7 +231,7 @@
                     .then(function () {
                         window.location.href = "/floe";
                     });
-            }
+            };
         });
 
     </script>

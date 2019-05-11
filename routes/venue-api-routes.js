@@ -41,4 +41,15 @@ module.exports = function(app) {
       res.json(dbVenue);
     });
   });
+
+  // PUT route for updating venues
+  app.put("/api/venues", function(req, res) {
+    db.Venue.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbVenue) {
+      res.json(dbVenue);
+    });
+  });
 };

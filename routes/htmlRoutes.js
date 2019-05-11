@@ -20,6 +20,11 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/html/artist-manager.html"));
   });
 
+  // artists route edit artist-manager.html
+  app.get("/edit-artist", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/edit-artist.html"));
+  });
+
   app.get("/venues", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/html/venue-manager.html"));
   });
