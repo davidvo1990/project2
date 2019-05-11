@@ -2,292 +2,101 @@
 <html lang="en">
 
 <head>
+    <!-- Required meta tags -->
     <meta charset="UTF-8">
-    <title>CMS - Express</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Floe: Input Gig</title>
     <!-- Latest compiled and minified CSS & JS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Link CSS Style Sheet-->
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <!-- JQuery Link -->
     <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JQuery -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row mt-4">
-            <div class="col-md-2 col-sm-2">
-                <a class="btn btn-light" href="/floe">Home</a>
-            </div>
-            <div class="col-md-2 col-sm-2">
-                <a class="btn btn-light" href="/cms">New Gig</a>
-            </div>
-            <div class="col-md-2 col-sm-2">
-                <a class="btn btn-light" href="/venues">Venue Manager</a>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">FLOE</h1>
+            <p class="lead">Make booking easier, one band at a time!</p>
+            <img src="../assets/img/icecube.png" alt="ice cube">
+        </div>
+    </div>
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home Page</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" a href="/artists">Artists</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" a href="/venues">Venues</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" a href="/cms">New Gig</a>
+        </li>
+    </ul>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="artist-container">
+                <h1>Artists</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Genre</th>
+                            <th>Social Media</th>
+                            <th># of Gigs</th>
+                            <th>See Artist's Gigs</th>
+                            <th>New Gig</th>
+                            <th>Edit Artist</th>
+                            <th>Delete Artist</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr id="form-row">
+                            <form id="artist-form">
+                                <label for="artist-name">Name:</label>
+                                <input placeholder="Enter Name" id="artist-name" class="form-control" type="text"
+                                    required />
+                                <br />
+                                <label for="artist-phone">Phone:</label>
+                                <input placeholder="Enter Phone" id="artist-phone" class="form-control" type="text"
+                                    required />
+                                <br />
+                                <label for="artist-email">Email:</label>
+                                <input placeholder="Enter Email" id="artist-email" class="form-control" type="text"
+                                    required />
+                                <br />
+                                <label for="artist-genre">Genre:</label>
+                                <input placeholder="Enter Genre" id="artist-genre" class="form-control" type="text"
+                                    required />
+                                <br />
+                                <label for="artist-socialMedia">Social Media:</label>
+                                <input placeholder="Enter Social Media" id="artist-socialMedia" class="form-control"
+                                    type="text" required />
+                                <br />
+                                <button type="submit" class="btn btn-success">Create Artist</button>
+                            </form>
+                        </tr>
+                    </tbody>
+
+
+                </table>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="artist-container">
-                    <h1>Artists</h1>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Phone Number</th>
-                                <th>Email</th>
-                                <th>Genre</th>
-                                <th>Social Media</th>
-                                <th># of Gigs</th>
-                                <th>See Artist's Gigs</th>
-                                <th>New Gig</th>
-                                <th>Edit Artist</th>
-                                <th>Delete Artist</th>
-                            </tr>
-                        </thead>
+    </div>
 
-                        <tbody>
-                            <tr id="form-row">
-                                <form id="artist-form">
-                                    <label for="artist-name">Name:</label>
-                                    <input placeholder="Enter Name" id="artist-name" class="form-control" type="text"
-                                        required />
-                                    <br />
-                                    <label for="artist-phone">Phone:</label>
-                                    <input placeholder="Enter Phone" id="artist-phone" class="form-control" type="text"
-                                        required />
-                                    <br />
-                                    <label for="artist-email">Email:</label>
-                                    <input placeholder="Enter Email" id="artist-email" class="form-control" type="text"
-                                        required />
-                                    <br />
-                                    <label for="artist-genre">Genre:</label>
-                                    <input placeholder="Enter Genre" id="artist-genre" class="form-control" type="text"
-                                        required />
-                                    <br />
-                                    <label for="artist-socialMedia">Social Media:</label>
-                                    <input placeholder="Enter Social Media" id="artist-socialMedia" class="form-control"
-                                        type="text" required />
-                                    <br />
-                                    <button type="submit" class="btn btn-success">Create Artist</button>
-                                </form>
-                            </tr>
-                        </tbody>
-
-
-                    </table>
-                </div>
-            </div>
-        </div>
-        </d>
-        <!-- Custom Script -->
-        <script src="js/artist-manager.js" type="text/javascript"></script>
-        <script>
-            $(document).ready(function () {
-                // Getting references to the name input and artist container, as well as the table body
-                var nameInput = $("#artist-name");
-                var phoneInput = $("#artist-phone");
-                var emailInput = $("#artist-email");
-                var genreInput = $("#artist-genre");
-                var socialMediaInput = $("#artist-socialMedia");
-                var artistList = $("tbody");
-                var artistContainer = $(".artist-container");
-                // Adding event listeners to the form to create a new object, and the button to delete
-                // an artist
-                $(document).on("submit", "#artist-form", handleArtistFormSubmit);
-                $(document).on("click", ".edit-artist", handleEditArtistButtonPress);
-                $(document).on("click", ".delete-artist", handleDeleteButtonPress);
-
-                // Getting the initial list of Artists
-                getArtists();
-
-                // A function to handle what happens when the form is submitted to create a new Artist
-                function handleArtistFormSubmit(event) {
-                    event.preventDefault();
-                    // Don't do anything if the name fields hasn't been filled out
-                    if (!nameInput.val().trim().trim() ||
-                        !phoneInput.val().trim().trim() ||
-                        !emailInput.val().trim().trim() ||
-                        !genreInput.val().trim().trim() ||
-                        !socialMediaInput.val().trim().trim()
-                    ) {
-                        // return;
-                        throw new Error("Please input information!!!")
-                    }
-
-                    // Calling the upsertArtist function and passing in the value of the name input
-                    upsertArtist({
-                        name: nameInput
-                            .val()
-                            .trim(),
-                        phone: phoneInput
-                            .val()
-                            .trim(),
-                        email: emailInput
-                            .val()
-                            .trim(),
-                        genre: genreInput
-                            .val()
-                            .trim(),
-                        socialMedia: socialMediaInput
-                            .val()
-                            .trim(),
-                    });
-                }
-
-                // A function for creating an artist. Calls getArtists upon completion
-                function upsertArtist(artistData) {
-                    $.post("/api/artists", artistData)
-                        .then(getArtists);
-                }
-                
-
-                // Function for creating a new list row for artists
-                function createArtistRow(artistData) {
-                    var newTr = $("<tr>");
-                    newTr.data("artist", artistData);
-                    newTr.append("<td>" + artistData.name + "</td>");
-                    newTr.append("<td>" + artistData.phone + "</td>");
-                    newTr.append("<td>" + artistData.email + "</td>");
-                    newTr.append("<td>" + artistData.genre + "</td>");
-                    newTr.append("<td>" + artistData.socialMedia + "</td>");
-                    if (artistData.Gigs) {
-                        newTr.append("<td> " + artistData.Gigs.length + "</td>");
-                    } else {
-                        newTr.append("<td>0</td>");
-                    }
-                    newTr.append("<td><a href='/floe?ArtistId=" + artistData.id + "'>Go to Gigs</a></td>");
-                    newTr.append("<td><a href='/cms?ArtistId=" + artistData.id + "'>Create a Gig</a></td>");
-                    newTr.append("<td><a style='cursor:pointer;color:blue' class='edit-artist'>Edit Artist</a></td>");
-                    newTr.append("<td><a style='cursor:pointer;color:red' class='delete-artist'>Delete Artist</a></td>");
-                    return newTr;
-                }
-
-                // Function for retrieving artists and getting them ready to be rendered to the page
-                function getArtists() {
-                    $.get("/api/artists", function (data) {
-                        var rowsToAdd = [];
-                        for (var i = 0; i < data.length; i++) {
-                            rowsToAdd.push(createArtistRow(data[i]));
-                        }
-                        renderArtistList(rowsToAdd);
-                        nameInput.val("");
-                        phoneInput.val("");
-                        emailInput.val("");
-                        genreInput.val("");
-                        socialMediaInput.val("");
-                    });
-                }
-
-                // A function for rendering the list of artists to the page
-                function renderArtistList(rows) {
-                    artistList.children().not(":last").remove();
-                    artistContainer.children(".alert").remove();
-                    if (rows.length) {
-                        console.log(rows);
-                        artistList.prepend(rows);
-                    }
-                    else {
-                        renderEmpty();
-                    }
-                }
-
-                // Function for handling what to render when there are no artists
-                function renderEmpty() {
-                    var alertDiv = $("<div>");
-                    alertDiv.addClass("alert alert-danger");
-                    alertDiv.text("You must create an Artist before you can create a Post.");
-                    artistContainer.append(alertDiv);
-                }
-
-                // Function for handling what happens when the delete button is pressed
-                function handleDeleteButtonPress() {
-                    var listItemData = $(this).parent("td").parent("tr").data("artist");
-                    var id = listItemData.id;
-                    $.ajax({
-                        method: "DELETE",
-                        url: "/api/artists/" + id
-                    })
-                        .then(getArtists);
-                }
-
-                function handleEditArtistButtonPress() {
-                    var currentPost = $(this)
-                        .parent()
-                        .parent()
-                        .data("artist");
-                    window.location.href = "/edit-artist?post_id=" + currentPost.id;
-                    
-                }
-
-
-
-
-
-
-
-
-
-/*
-
-
-                var url = window.location.search;
-                var postId;
-
-                // Function for handling waht happens when the edit button is pressed
-                function handleEditArtistButtonPress() {
-                    var currentPost = $(this)
-                        .parent()
-                        .parent()
-                        .data("artist");
-                    window.location.href = "/artists?post_id=" + currentPost.id;
-
-                }
-
-                if (url.indexOf("?post_id=") !== -1) {
-                    postId = url.split("=")[1];
-                    getPostData(postId, "artist");
-                }
-                // Otherwise if we have an ArtistId in our url, preset the artist select box to be our Artist
-                // else if (url.indexOf("?ArtistId=") !== -1) {
-                //     artistId = url.split("=")[1];
-                // }
-                // else if (url.indexOf("?VenueId=") !== -1) {
-                //     venueId = url.split("=")[1];
-                // }
-
-                // Gets post data for the current post if we're editing, or if we're adding to an artist's existing posts
-                function getPostData(id, type) {
-                    var queryUrl;
-                    switch (type) {
-                        case "artist":
-                            queryUrl = "/api/artists/" + id;
-                            break;
-                        // case "venue":
-                        //     queryUrl = "/api/venues/" + id;
-                        //     break;
-                        default:
-                            return;
-                    }
-                    $.get(queryUrl, function (data) {
-                        if (data) {
-                            // If this post exists, prefill our cms forms with its data
-                            console.log("Edit this " + data.name)
-                            nameInput.val(data.name);
-                            phoneInput.val(data.phone);
-                            emailInput.val(data.email);
-                            genreInput.val(data.genre);
-                            socialMediaInput.val(data.socialMedia);
-                            // If we have a post with this id, set a flag for us to know to update the post
-                            // when we hit submit
-                            updating = true;
-                        }
-                    });
-                }
-*/
-            });
-
-
-
-        </script>
+    <!-- Custom Script -->
+    <script src="../js/artist.js" type="text/javascript"></script>
 
 </body>
 

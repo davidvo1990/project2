@@ -42,8 +42,8 @@ module.exports = function(app) {
     });
   });
 
-   // PUT route for updating artist
-   app.put("/api/artists", function(req, res) {
+  // PUT route for updating artist
+  app.put("/api/artists", function(req, res) {
     db.Artist.update(req.body, {
       where: {
         id: req.body.id

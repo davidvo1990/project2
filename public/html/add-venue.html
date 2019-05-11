@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Floe: Input Gig</title>
+    <title>Floe: Input Artist</title>
     <!-- Latest compiled and minified CSS & JS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
@@ -25,7 +25,6 @@
             <p class="lead">Make booking easier, one band at a time!</p>
             <img src="../assets/img/icecube.png" alt="ice cube">
             </div>
-            
         </div>
     <ul class="nav justify-content-center">
             <li class="nav-item">
@@ -42,36 +41,34 @@
         <div class="container hidden">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
-                    <form id="cms">
-                        <div class="form-group">
-                            <label for="gig">Gig:</label>
-                            <input placeholder="New Gig" type="text" class="form-control" id="gig">
-                            <br />
-                            <label for="date">Date:</label>
-                            <input placeholder="Add new Date" class="form-control" id="date"></input>
-                            <br />
-
-                            <label for="time">Time:</label>
-                            <input placeholder="Add new Time" class="form-control" id="time"></input>
-                            <div class="form-group">
-                                <label for="category">Select Artist:</label>
-                                <select class="custom-select" id="artist">
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="category">Select Venue:</label>
-                                <select class="custom-select" id="venue">
-                                </select>
-                            </div>
-                            <br />
-                            <button type="submit" class="btn btn-success submit">Submit</button>
-                        </div>
+                    <form id="venue-form">
+                        <label for="venue-name">Name:</label>
+                        <input placeholder="Enter Name" id="venue-name" class="form-control" type="text"
+                            required />
+                        <br />
+                        <label for="venue-address">Address:</label>
+                        <input placeholder="Enter Address" id="venue-address" class="form-control" type="text"
+                            required />
+                        <br />
+                        <label for="venue-contact">Contact:</label>
+                        <input placeholder="Enter Contact" id="venue-contact" class="form-control" type="text"
+                            required />
+                        <br />
+                        <label for="venue-phone">Phone:</label>
+                        <input placeholder="Enter Phone" id="venue-phone" class="form-control" type="text"
+                            required />
+                        <br />
+                        <label for="venue-website">Website:</label>
+                        <input placeholder="Enter Website" id="venue-website" class="form-control"
+                            type="text" required />
+                        <br />
+                        <button type="submit" class="btn btn-success">Create Venue</button>
                     </form>
                 </div>
             </div>
         </div>
         <!-- Custom Script -->
-        <script src="../js/cms.js" type="text/javascript"></script>
+        <script src="../js/venue.js" type="text/javascript"></script>
     </date>
 </body>
 </html>

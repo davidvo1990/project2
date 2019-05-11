@@ -27,7 +27,13 @@ module.exports = function(app) {
   });
 
   app.post("/api/venues", function(req, res) {
-    db.Venue.create(req.body).then(function(dbVenue) {
+    db.Venue.create({
+      name: req.body.name,
+      address: req.body.address,
+      contact: req.body.contact,
+      phone: req.body.phone,
+      website: req.body.website
+    }).then(function(dbVenue) {
       res.json(dbVenue);
     });
   });
