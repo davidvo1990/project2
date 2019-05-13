@@ -38,3 +38,7 @@ h2, h5, h4, .mb-3, mb-4, row {
     font-family: 'DatalegreyaDot'; 
 
 }
+
+.card-body{
+    cursor: pointer;
+}

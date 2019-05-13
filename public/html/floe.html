@@ -2,54 +2,87 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Floe</title>
-    <!-- Latest compiled and minified CSS & JS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!--Link CSS Style Sheet-->
-    <link rel="stylesheet" href="../assets/styles/style.css">
-     <!--Font Library Links for CSS Styling-->
-     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/datalegreya" type="text/css"/>
-     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/glacial-indifference" type="text/css"/>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Floe</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!--Link CSS Style Sheet-->
+  <link rel="stylesheet" href="../assets/styles/style.css">
+  <!--Font Library Links for CSS Styling-->
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/datalegreya" type="text/css" />
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/glacial-indifference" type="text/css" />
+  <!-- Map -->
+  <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+
 </head>
+
 <body>
-    <!-- JQuery Link -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Bootstrap JQuery -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-   
-    <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-              <img src="../assets/img/floelogo.png" alt="ice cube" class="center" >
-            </div>
-        </div>
-    <ul class="nav justify-content-center">
-            <li class="nav-item">
-                    <a class="nav-link" href="/">Home Page</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" a href="/artists">Artists</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" a href="/venues">Venues</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" a href="/cms">New Gig</a>
-            </li>
-            </ul>
+  <!-- JQuery Link -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- Bootstrap JQuery -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <img src="../assets/img/floelogo.png" alt="ice cube" class="center">
+    </div>
+  </div>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="/">Home Page</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" a href="/artists">Artists</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" a href="/venues">Venues</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" a href="/cms">New Gig</a>
+    </li>
+  </ul>
   <div class="container floe">
     <div class="row">
       <div class="col-md-12 gig-container">
       </div>
     </div>
   </div>
-  <!-- Custom Script -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
-  <script src="../js/floe.js" type="text/javascript"></script>
+
+
+  <!-- Modal -->
+  <div class="modal" tabindex="-1" role="dialog" id="results-modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title">Modal title</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="address"></div>
+          <!-- <div id="div-img"> -->
+            <!-- <img id="match-img" src="https://placekitten.com/300/300" alt=""> -->
+            <!-- <div style="width: 470px; height: 480px" id="mapContainer"></div> -->
+          <!-- </div> -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Custom Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
+    <script src="../js/floe.js" type="text/javascript"></script>
 
 </body>
 
