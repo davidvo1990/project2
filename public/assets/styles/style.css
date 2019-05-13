@@ -1,28 +1,40 @@
 body {
-    background-color: lightblue
+    background-color: #e8f6f9; 
+    margin-bottom: 100px;
 }
 
-.jumbotron{
-    text-align: center; 
-    border:5px solid #cccc;
-    font-size: 100px; 
-    font-family: 'Times New Roman', Times, serif;
-    
-    
-}
+.center {
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 50%; 
+    }
+
+
+h1 {
+    font-family: 'DatalegreyaDot';
+    font-weight: normal;
+    font-style: normal;
+  }
+
+p {
+    font-family: 'GlacialIndifferenceRegular';
+    font-weight: normal;
+    font-style: normal;
+  }
 
 .nav {
-    font-family: 'Times New Roman', Times, serif; 
+    font-family: 'DatalegreyaDot'; 
     font: 6px;
     font-size: 33px;  
 }
 
 .display-4, .lead,  {
     text-align: center; 
-    font-family: 'Times New Roman', Times, serif; 
+    font-family: 'GlacialIndifferenceRegular'; 
 }
 
 h2, h5, h4, .mb-3, mb-4, row {
-    font-family: 'Times New Roman', Times, serif; 
+    font-family: 'DatalegreyaDot'; 
 
 }

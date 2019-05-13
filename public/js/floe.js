@@ -28,14 +28,6 @@ $(document).ready(function() {
     else {
       getPosts();
     }
-    // if (url.indexOf("?VenueId=") !== -1) {
-    //   venueId = url.split("=")[1];
-    //   getVenue(venueId);
-    // }
-    // // If there's no artistId we just get all posts as usual
-    // else {
-    //   getVenue();
-    // }
     // This function grabs posts from the database and updates the view
     function getPosts(artist) {
       artistId = artist || "";

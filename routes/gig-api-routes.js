@@ -12,7 +12,8 @@ module.exports = function(app) {
     var query = {};
     if (req.query.ArtistId) {
       query.ArtistId = req.query.ArtistId;
-    } else if (req.query.VenueId) {
+    }
+    if (req.query.VenueId) {
       query.VenueId = req.query.VenueId;
     }
     // Here we add an "include" property to our options in our findAll query
