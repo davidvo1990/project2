@@ -1,4 +1,4 @@
-![Floe Logo](https://github.com/LianaSun/GroupProject2/blob/master/public/assets/img/floelogo.png)
+![Floe Logo](https://github.com/davidvo1990/project2/blob/master/public/assets/img/floelogo.png)
 # Floe Band Management CRM
 Managing artists, venues and gigs has never been easier with Floe. Floe, a one-stop shop customer relationship manager, stores your artist and venue information and gives you the ability to add, edit and delete gigs. Floe understands the craziness of the music industry and enables you let the cash "FLOE."
 
@@ -16,8 +16,7 @@ Managing artists, venues and gigs has never been easier with Floe. Floe, a one-s
 
 ### How it works!
 
-![Demo](https://github.com/LianaSun/GroupProject2/blob/master/public/assets/img/demo.gif)
-
+![Demo](https://github.com/davidvo1990/project2/blob/master/public/assets/img/demo.gif)
 Input your artist names. Input your venue options. Create gigs for that artist and note the venue. Floe will automatically organize the gigs by date.  You can view your artist's gigs or view the upcoming gigs for that venue. Need an exact address? Click on the venue name with the listed gigs to view the exact location and address with the API's, Foursquare and HERE. 
 
 With Floe, you're given the controls to edit and delete artists, venues and gigs.
