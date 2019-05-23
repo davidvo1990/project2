@@ -2,7 +2,7 @@
 # Floe Band Management CRM
 Managing artists, venues and gigs has never been easier with Floe. Floe, a one-stop shop customer relationship manager, stores your artist and venue information and gives you the ability to add, edit and delete gigs. Floe understands the craziness of the music industry and enables you let the cash "FLOE."
 
-# Click link to [App](https://ancient-retreat-92080.herokuapp.com/). 
+# Click link to [App](https://intense-inlet-84247.herokuapp.com/). 
 
 ### Concept of App
 * Problem - Organizing multiple musical artists and bands over several months
